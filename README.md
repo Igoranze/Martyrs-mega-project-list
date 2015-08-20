@@ -10,6 +10,7 @@ Some details:
 * I will use JAVA to solve these.
 * I may not be able to complete all of them.
 * My method of solving them may not be the best.
+--Testing
 
 ==============================
 
