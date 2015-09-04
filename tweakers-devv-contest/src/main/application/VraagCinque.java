@@ -29,23 +29,34 @@ public class VraagCinque {
 
 	private static int quantityStonesForSymbol = 250;
 
-	private static int years = 1; //250 stones are used this first year
+	private static int years = 0; //250 stones are used this first year
 
 	private static int earthquakeInYears = 43;
 	private static int lostQuantityStonesInPercentage = 15; //Every eathquake 15% of the remaining stones is lost
 
-	private static int quantityStones = 12500000 - 250;
+	private static int quantityStones = 12500000;
 
 	public static void main(String[] args) {
 		//Calculate how long the quantityStones will last in years
-		while (quantityStones > 0) {
-			StringBuilder reverseYears = new StringBuilder(Integer.toString(years));
-			String year = reverseYears.reverse().toString();
-			calculateYears(year);
+		while (quantityStones >= 0) {
+			years++;
+			if(years == earthquakeInYears){
+				earthquakeInYears = earthquakeInYears + earthquakeInYears;
+				//Getal: 100 x aantal % = antwoord
+				quantityStones = quantityStones * lostQuantityStonesInPercentage / 100;
+				System.out.println(quantityStones);
+			}
+			removeQuantityStones(formatToRom(years));
+			
 		}
 		
-		System.out.println("Rom years: " + formatToRom(years) + "\n"
-						+ "Normal Years past: " +years);
+		System.out.println("Years past: " +formatToRom(years));
+	}
+
+	private static void removeQuantityStones(String formatToRom) {
+		int temp = formatToRom.length() * quantityStonesForSymbol;
+		quantityStones = quantityStones - temp;
+		
 	}
 
 	private static String formatToRom(int years) {
@@ -62,172 +73,4 @@ public class VraagCinque {
 		    }
 		    return result.toString();
 	}
-
-	private static void calculateYears(String year){
-		for(int i = 0; i < year.length(); i++){
-			if(years == earthquakeInYears){
-				earthquakeInYears = earthquakeInYears + earthquakeInYears;
-				calculateYearsWithEarthQ(year);
-				break;
-			}
-			years++;
-			char [] c = year.toCharArray();
-			char y = c[i];
-			if(i == 0){
-				//00000000#
-				countYears(y);
-				break;
-			} else if (i == 1){
-				//0000000#0
-				countYears(y);
-				break;
-			} else if (i == 2){
-				//000000#00
-				countYears(y);
-				break;
-			} else if (i == 3){
-				//00000#000
-				countYears(y);
-				break;
-			} else if (i == 4){
-				//0000#0000
-				countYears(y);
-				break;
-			} else if (i == 5){
-				//000#00000
-				countYears(y);
-				break;
-			} else if (i == 6){
-				//00#000000
-				countYears(y);
-				break;
-			} else if (i == 7){
-				//0#0000000
-				countYears(y);
-				break;
-			} else if (i == 8){
-				//#00000000
-				countYears(y);
-				break;
-			} 
-		}
-	}
-	
-	private static void calculateYearsWithEarthQ(String year){
-		for(int i = 0; i < year.length(); i++){
-			//kleinste getal : totaal x 100 = Antwoord in %
-			quantityStones = 15 / quantityStones * 100;
-			char [] c = year.toCharArray();
-			char y = c[i];
-			if(i == 0){
-				//00000000#
-				countYears(y);
-				break;
-			} else if (i == 1){
-				//0000000#0
-				countYears(y);
-				break;
-			} else if (i == 2){
-				//000000#00
-				countYears(y);
-				break;
-			} else if (i == 3){
-				//00000#000
-				countYears(y);
-				break;
-			} else if (i == 4){
-				//0000#0000
-				countYears(y);
-				break;
-			} else if (i == 5){
-				//000#00000
-				countYears(y);
-				break;
-			} else if (i == 6){
-				//00#000000
-				countYears(y);
-				break;
-			} else if (i == 7){
-				//0#0000000
-				countYears(y);
-				break;
-			} else if (i == 8){
-				//#00000000
-				countYears(y);
-				break;
-			} 
-		}
-	}
-
-	private static void countYears(char y){
-		switch (y){
-		case '0':
-			//do nothing
-			;
-		case '1':
-			quantityStones = quantityStones - 250;
-			if((quantityStones < 0)){
-				quantityStones = quantityStones + 250;
-				years--;
-			}
-			;
-		case '2':
-			quantityStones = quantityStones - 500;
-			if((quantityStones < 0)){
-				quantityStones = quantityStones + 500;
-				years--;
-			}
-			;
-		case '3':
-			quantityStones = quantityStones - 750;
-			if((quantityStones < 0)){
-				quantityStones = quantityStones + 750;
-				years--;
-			}
-			;
-		case '4':
-			quantityStones = quantityStones - 500;
-			if((quantityStones < 0)){
-				quantityStones = quantityStones + 500;
-				years--;
-			}
-			;
-		case '5':
-			quantityStones = quantityStones - 250;
-			if((quantityStones < 0)){
-				quantityStones = quantityStones + 250;
-				years--;
-			}
-			;
-		case '6':
-			quantityStones = quantityStones - 500;
-			if((quantityStones < 0)){
-				quantityStones = quantityStones + 500;
-				years--;
-			}
-			;
-		case '7':
-			quantityStones = quantityStones - 750;
-			if((quantityStones < 0)){
-				quantityStones = quantityStones + 750;
-				years--;
-			}
-			;
-		case '8':
-			quantityStones = quantityStones - 1000;
-			if((quantityStones < 0)){
-				quantityStones = quantityStones + 1000;
-				years--;
-			}
-			;
-		case '9':
-			quantityStones = quantityStones - 500;
-			if((quantityStones < 0)){
-				quantityStones = quantityStones + 500;
-				years--;
-			}
-			;
-		}
-	}
-
 }
