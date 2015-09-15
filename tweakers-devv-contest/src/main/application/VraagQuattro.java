@@ -8,7 +8,6 @@ package main.application;
  */
 public class VraagQuattro {
 
-	private static int days = 1000;
 
 	public static void main(String[] args) {
 		double a = 0;

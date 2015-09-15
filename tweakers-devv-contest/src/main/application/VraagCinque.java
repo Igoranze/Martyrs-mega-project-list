@@ -1,4 +1,7 @@
 package main.application;
+
+import java.io.IOException;
+
 /**
  * In het oude Rome stond een sterk staaltje architectuur genaamd het 'Ominesium'. 
  * Op de gevel van het gebouw was met mozaïek aangegeven hoe oud het gebouw was in jaren.
@@ -19,47 +22,56 @@ package main.application;
  */
 public class VraagCinque {
 
-	private static String I = ""; //1
-	private static String V = ""; //5
-	private static String X = ""; //10
-	private static String L = ""; //50
-	private static String C = ""; //100
-	private static String D = ""; //500
-	private static String M = ""; //1000
+	private static int stonesRem = 0;
 
-	private static int quantityStonesForSymbol = 250;
+	private static double quantityStonesForSymbol = 250;
 
-	private static int years = 0; //250 stones are used this first year
+	private static double years = 0; //250 stones are used this first year
 
-	private static int earthquakeInYears = 43;
-	private static int lostQuantityStonesInPercentage = 15; //Every eathquake 15% of the remaining stones is lost
+	private static double earthquakeInYears = 43;
+	private static double lostQuantityStonesInPercentage = 15; //Every eathquake 15% of the remaining stones is lost
 
-	private static int quantityStones = 12500000;
+	private static double quantityStones = 12500000;
 
 	public static void main(String[] args) {
 		//Calculate how long the quantityStones will last in years
 		while (quantityStones >= 0) {
 			years++;
 			if(years == earthquakeInYears){
-				earthquakeInYears = earthquakeInYears + earthquakeInYears;
+				earthquakeInYears += 43;
 				//Getal: 100 x aantal % = antwoord
-				quantityStones = quantityStones * lostQuantityStonesInPercentage / 100;
-				System.out.println(quantityStones);
+				double out = (quantityStones * lostQuantityStonesInPercentage / 100);			
+				int a = round(out);
+				quantityStones = quantityStones - a;
 			}
 			removeQuantityStones(formatToRom(years));
 			
 		}
 		
 		System.out.println("Years past: " +formatToRom(years));
+		//Antwoord: CMXIII
 	}
 
 	private static void removeQuantityStones(String formatToRom) {
-		int temp = formatToRom.length() * quantityStonesForSymbol;
+		double temp = formatToRom.length() * quantityStonesForSymbol;
+		stonesRem += temp;
+		
 		quantityStones = quantityStones - temp;
 		
 	}
+	
+	private static int round(double d){
+	    double dAbs = Math.abs(d);
+	    int i = (int) dAbs;
+	    double result = dAbs - (double) i;
+	    if(result<0.5){
+	        return d<0 ? -i : i;            
+	    }else{
+	        return d<0 ? -(i+1) : i+1;          
+	    }
+	}
 
-	private static String formatToRom(int years) {
+	private static String formatToRom(double years) {
 		   String riman[] = {"M","XM","CM","D","XD","CD","C","XC","L","XL","X","IX","V","IV","I"};
 		    int arab[] = {1000, 990, 900, 500, 490, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
 		    StringBuilder result = new StringBuilder();
