@@ -1,0 +1,30 @@
+package main.application;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.NumberFormat;
+import java.util.Locale;
+
+public class Main {
+
+	public static void main(String[] args) {
+		String moneyGiven = "24.42";
+		String totalPrice = "15.99";
+		
+		BigDecimal moneyGiven_modelVal = new BigDecimal(moneyGiven);
+		BigDecimal moneyGiven_displayVal = moneyGiven_modelVal.setScale(2, RoundingMode.HALF_EVEN);
+		
+		BigDecimal totalPrice_modelVal = new BigDecimal(totalPrice);
+		BigDecimal totalPrice_displayVal = totalPrice_modelVal.setScale(2, RoundingMode.HALF_EVEN);
+		
+		BigDecimal sum_modelVal = moneyGiven_modelVal.subtract(totalPrice_displayVal);
+		BigDecimal sum_displayVal = sum_modelVal.setScale(2, RoundingMode.HALF_EVEN);
+		
+		NumberFormat usdCostFormat = NumberFormat.getCurrencyInstance(Locale.GERMANY);
+		usdCostFormat.setMinimumFractionDigits( 1 );
+		usdCostFormat.setMaximumFractionDigits( 2 );
+		System.out.println( usdCostFormat.format(sum_displayVal.doubleValue()));
+		
+	}
+
+}

@@ -1,0 +1,60 @@
+package main.application;
+/**
+ * De zombie apocalypse heeft toegeslagen. 
+ * Patient zero is besmet geraakt nadat hij was gebeten door een mier tijdens het nachtelijk wildplassen. Precies om 0:00 zelfs.
+ * De volgende waarden zijn van toepassing
+ * Op het moment van de besmetting van patient zero zijn er 7.000.000.000 mensen niet besmet.
+ * Elke zombie valt 2 mensen aan per uur tussen 8:00 en 22:00. In de nachtelijke uren is dit er 1 per uur.
+ * Elk uur raakt per 5 aanvallen afgerond naar beneden gemiddeld 1 lichaam van een gezond persoon te zwaar beschadigd om 
+ * opnieuw op te staan. Deze persoon kan dus geen anderen infecteren.
+ * Vanaf 8:00 op de eerste dag heeft de mensheid door wat er aan de hand is en weet vanaf dan elk uur per 
+ * drie aanvallen één aanval af te slaan en daarbij aan de zombie te ontsnappen.
+ * Omdat we uitgaan van gemiddelden, beginnen we elk uur opnieuw met het tellen van beschadigde lichamen en afgeweerde zombies.
+ * Na hoeveel uren is het menselijk ras uitgestorven?
+ * 
+ * Antwoord met een positieve integer (bijv. 15000).
+ *
+ */
+public class VraagTredici {
+
+	private static boolean aware = false;
+	private static long humans = 7000000000l;
+	
+	private static long zombies = 1;
+	
+	private static int days = 0;
+	private static int hours = 0;
+	
+	public static void main(String[] args){
+		long zombieCount = 1;
+		long healthyCount =  7000000000l;
+		long timeInHours = 0;
+		
+		while(true){
+			long attacksPerZombie = (timeInHours%24>=8 && timeInHours%24<22)?2:1;
+			long attackedPersons = zombieCount*attacksPerZombie;			
+			long unsuccesfulAttacks = (timeInHours >= 8)? attackedPersons/3:0;
+			attackedPersons -= unsuccesfulAttacks;
+			long collapsedHealthyPerson = attackedPersons/5;
+			
+			if(timeInHours==0)
+			System.out.println("Time: "+timeInHours+" HealthyCount: "+healthyCount+" Zombies: "+zombieCount+" attacksPerZombie: "+attacksPerZombie);
+			
+			zombieCount = zombieCount - unsuccesfulAttacks + attackedPersons - collapsedHealthyPerson;
+			healthyCount -= attackedPersons;	
+			
+			if(timeInHours>0)
+				System.out.println("Time: "+timeInHours+" HealthyCount: "+healthyCount+" Zombies: "+zombieCount+" attacksPerZombie: "+attacksPerZombie);
+
+			if(healthyCount<=0){
+				break;				
+			}
+			
+			
+			timeInHours++;
+		}
+		
+	}
+
+
+}

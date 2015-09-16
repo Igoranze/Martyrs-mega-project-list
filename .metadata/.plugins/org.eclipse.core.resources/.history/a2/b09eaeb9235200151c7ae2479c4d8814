@@ -1,0 +1,28 @@
+package main.application;
+
+/**
+ * Sommige positieve getallen n hebben de eigenschap dat de som [ n + reverse(n) ] 
+ * volledig bestaat uit oneven nummers. Bijvoorbeeld, 36 + 63 = 99 en 409 + 904 = 1313.
+ * Deze getallen noemen we omkeerbaar; dus 36, 63, 409, en 904 zijn omkeerbaar. Voorlopende nullen in n or reverse(n) zijn niet toegestaan.
+ * Er zijn 120 omkeerbare getallen onder 1000.
+ * Hoeveel omkeerbare getallen zijn er onder 100 miljoen (108)?
+ * Voorbeeldnotatie antwoord (schrijfwijze als positief integer): 15000
+ */
+public class VraagUno {
+
+
+	public static void main(String[] args) {
+		int answer = 0;
+		for (int i = 0; i < 1000; i++) {
+			if (i % 2 != 0) {
+				StringBuilder stringOfInt = new StringBuilder(Integer.toString(i));
+				int result = i + Integer.parseInt(stringOfInt.reverse().toString());
+				String res = Integer.toString(result);
+				if (!res.contains("2") || !res.contains("4") || !res.contains("6") || !res.contains("8")) {
+					answer++;
+					System.out.println("Normal: "+ i + " Reverse: " + stringOfInt.reverse().toString());
+			} 
+		}
+		System.out.println(answer);
+	}
+}

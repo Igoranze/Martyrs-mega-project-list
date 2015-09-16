@@ -1,0 +1,46 @@
+package main.application;
+/**
+ * Een object zweeft met een vaste snelheid van 20 punten p/s door de ruimte. 
+ * Op het moment van schrijven bevindt het object zich op positie x: 30, y: 50 en z: 90. 
+ * Het object beweegt naar x: 46, y: 48 en z: 9.
+ * Wat zijn de coördinaten van het object na 25 minuten. Afgerond op 2 decimalen
+ * Voorbeeldnotatie antwoord: x:1.200,12 y:24.150,00 z:160,98
+ */
+public class VraagTre {
+
+	static int x = 30;
+	static int y = 50;
+	static int z = 90;
+	
+	static int mvX = 4^6;
+	static int mvY = 4^8;
+	static int mvZ = 9;
+	
+	static int X = mvX-x;
+	static int Y = mvY-y;
+	static int Z = mvZ-z;
+	
+	static double tijd = 20*60*25;
+	
+	public static void main(String[] args) {
+		double a = Math.sqrt((x-mvX) + (y-mvY) + (z-mvZ));
+		double b = tijd / a;
+		System.out.println("x:"+ Double.toString((x+X)*b));
+	}
+}
+/*
+x1, y1, z1 = [30,50,90]
+x2, y2, z2 = [4096, 65536,9]
+
+dx, dy, dz = [(x2-x1),(y2-y1),(z2-z1)]
+ 
+distance_two_points = Math.sqrt((x1-x2)**2+(y1-y2)**2+(z1-z2)**2)   
+distance_travelled = 20*60*25
+
+percentage_travelled = distance_travelled / distance_two_points
+puts x1 + dx*percentage_travelled
+puts y1 + dy*percentage_travelled
+puts z1 + dz*percentage_travelled
+
+# answer needs to be very specific:  x:1.889,11 y:29.992,32 z:52,96
+*/

@@ -1,0 +1,53 @@
+package main.application;
+
+import java.util.Scanner;
+
+/**
+ * Vraag 6 - Pascal Triangle
+ * Pascals driehoek is een bekende piramide waarbij het bovenste getal 1 is en de opvolgende rijen de som zijn 
+ * van de 2 bovenliggende aangrenzende getallen. Zie hieronder een voorbeeld :
+ * 
+ *		1
+ *	   1 1
+ *	  1 2 1
+ *	 1 3 3 1
+ *  1 4 6 4 1
+ * 1 5 10 10 5 1
+ * 
+ * Bereken de som van de onderste rij van een Pascal-driehoek met duizend rijen. De top van de driehoek telt niet mee als rij.
+ * Gebruik in je antwoord de wetenschappelijke notatie, rond af op 4 cijfers achter de komma, bijvoorbeeld: 1.0903E+23
+ */
+public class VraagSei {
+
+	 public static void print(int n) {
+	       int[] previousRow;
+	       int[] currentRow = {1};
+	       printArray(currentRow);
+	       previousRow = currentRow;
+	       for (int i = 2; i <= n; i++) {
+	           currentRow = new int[i];
+	           currentRow[0] = 1;
+	           currentRow[i - 1] = 1;
+	           for (int j = 0; j <= i - 3; j++) {
+	               currentRow[j + 1] = previousRow[j] + previousRow[j + 1];
+	           }
+	           printArray(currentRow);
+	           previousRow = currentRow;
+	       }
+	   }
+
+	   public static void printArray(int[] array) {
+	       for (int i = 0; i < array.length; i++) {
+	           System.out.print(array[i] + " ");
+	       }
+	       System.out.println();
+	   }
+
+	   public static void main(String[] args) {
+	       Scanner scanner = new Scanner(System.in);
+	       System.out.print("Enter the row number upto which Pascal's triangle has to be printed: ");
+	       int row = scanner.nextInt();
+	       print(row);
+	   }
+
+}

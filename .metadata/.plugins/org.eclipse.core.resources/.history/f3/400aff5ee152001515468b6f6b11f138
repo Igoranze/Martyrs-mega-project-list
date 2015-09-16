@@ -1,0 +1,69 @@
+package main.application;
+
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+
+/**
+ * Een object zweeft met een vaste snelheid van 20 punten p/s door de ruimte. 
+ * Op het moment van schrijven bevindt het object zich op positie x: 30, y: 50 en z: 90. 
+ * Het object beweegt naar x: 46, y: 48 en z: 9.
+ * Wat zijn de coördinaten van het object na 25 minuten. Afgerond op 2 decimalen
+ * Voorbeeldnotatie antwoord: x:1.200,12 y:24.150,00 z:160,98
+ */
+public class VraagTre {
+
+	static double x = 30;
+	static double y = 50;
+	static double z = 90;
+	
+	static double mvX = 4^6;
+	static double mvY = 4^8;
+	static double mvZ = 9;
+	
+	static double time = 20*60*25;
+	
+	public static void main(String[] args) {
+		for (double i = 0; i < time; i++) {
+			double part = i*20 / 65612.156747054;
+			double X = (part*mvX) + x;
+			double Y = (part*mvY) + y;
+			double Z = (part*mvZ) + z;
+			System.out.println("" + Double.toString(X).toString() + " \n"
+								+ Double.toString(Y).toString()+ " \n"
+								+ Double.toString(Z).toString() + "");
+		}
+	}
+	
+	@Override
+	public String toString(){
+		DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols(Locale.GERMAN);
+		otherSymbols.setDecimalSeparator(',');
+		otherSymbols.setGroupingSeparator('.'); 
+
+		DecimalFormat newFormat = new DecimalFormat("##,###.##", otherSymbols);
+
+		return "x:" + newFormat.format(x) + " y:" + newFormat.format(y) + " z:" + newFormat.format(z);
+	}
+}
+/*var max = 60*25+1;
+var startx = 30;
+var starty = 50;
+var startz = 90;
+
+var correctedx = 4066;
+var correctedy = 65486;
+var correctedz = -81;
+
+for (var i = 1; i < max; i++) {
+var part = i*20 / 65612.156747054
+var newx = (part*correctedx) + startx;
+var newy = (part*correctedy) + starty;
+var newz = (part*correctedz) + startz;
+console.log("PART:"+ part + "Seconds:" +i+ " Position: X:"+r(newx)+ " Y: "+ r(newy) + " Z: " +r(newz));
+
+}
+function r(num) { 
+return +(Math.round(num + "e+2") + "e-2");
+}
+*/

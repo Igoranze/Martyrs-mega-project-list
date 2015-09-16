@@ -1,0 +1,55 @@
+package main.application;
+/**
+ * In het oude Rome stond een sterk staaltje architectuur genaamd het 'Ominesium'. 
+ * Op de gevel van het gebouw was met mozaïek aangegeven hoe oud het gebouw was in jaren.
+ * Uiteraard gaven de oude Romeinen dit aan met Romeinse cijfers. Deze Romeinen waren erg bij 
+ * de tijd en gebruikten de moderne notatie voor Romeinse cijfers: 49 = XLIX, 4 = IV.
+ * Het gebouw is net na een stevige aardbeving voltooid, en het eerste mozaïek werd na een jaar aangebracht. 
+ * Onze jaartelling begint bij 0, dus het eerste mozaïek werd geplaatst in het jaar 1.
+ * Het aantal mozaïksteentjes benodigd voor een symbool is 250. Het jaartal IV kostte dus 500 steentjes om op de muur aan te brengen.
+ * Om kleurverschil tegen te gaan werd bij elke plaatsing van een nieuw jaartal de complete mozaïek opnieuw geplaatst.
+ * Het was een regio met veel seismische activiteit; om de 43 jaar werd de regio getroffen door een zware aardbeving 
+ * waarbij 15% van de voorraad steentjes verloren ging, per aardbeving afgerond naar boven op gehele steentjes. 
+ * De eerste beving sinds de voltooiing van het gebouw vond plaats na 43 jaar.
+ * Aardbevingen vonden door een enorm toeval telkens plaats voordat het nieuwe mozaïek werd aangebracht.
+ * Na de voltooiing van het 'Ominesium' (en dus ook ná de aardbeving in het jaar 0) was er nog een 
+ * voorraad van 12.500.000 mozaïeksteentjes beschikbaar voor de jaarlijkse renovatie van het mozaïek.
+ * In welk jaar was de voorraad steentjes niet meer voldoende om het nieuwe jaartal op het gebouw te plaatsen?
+ * Antwoord in Romeinse notatie, dus bijvoorbeeld: DCCLXII
+ */
+public class VraagCinque {
+
+	String j, i = "";
+	String str, str1 = "";
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public boolean validateTrtype(String trType){
+        if(trType=="fixed") {
+            return true;
+        } else if( trType != "fixed"){
+        String trName = trType.substring(0, Math.min(trType.length(), 4));
+        String trName1 = trType.substring(Math.max(0, trType.length() - 5));
+        String[] trTypeSplit = trType.split("(rand)|(floo)");
+        i = trTypeSplit[0];
+        System.out.println(i);
+        j = trTypeSplit[1];
+        System.out.println(j);
+        this.str = trName;
+        this.str1 = trName1;
+        System.out.println(str);
+        System.out.println(str1);
+        }
+        if((str=="rand") && (isInt(j)==true) && !(Integer.parseInt(j)<0)){
+            return true;
+        }
+        if((str1=="flood") && (isInt(i)==true) && !(Integer.parseInt(i)<0)){
+            return true;
+        }
+        else
+        return false;
+
+    }
+}

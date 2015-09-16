@@ -1,0 +1,22 @@
+package main.application;
+
+public class Main {
+
+	public static void main(String[] args) {
+		String[] strings = {"This string is not palindrome",   //Not palindrome
+		"A Man, A Plan, A Canal-Panama!"}; //Palindrome
+
+		//loop trough the object containing all sentences
+		for (String sentence : strings){
+			//first we remove all whitespaces and characters like ',./?! .etc
+			StringBuilder cleanString = new StringBuilder();
+			cleanString.append(removeImperfections(sentence));
+		}		
+	}
+	
+	private String removeImperfections(String sentence){
+		return sentence;
+	}
+
+}
+

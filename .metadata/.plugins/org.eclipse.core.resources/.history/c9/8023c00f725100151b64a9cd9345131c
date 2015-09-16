@@ -1,0 +1,45 @@
+import static java.nio.file.StandardOpenOption.*;
+import java.nio.file.*;
+import java.io.*;
+
+
+public class Main {
+
+	private StringBuilder stringB = new StringBuilder();
+	
+	public static void main(String[] args) {
+	
+		readFromFile();
+		
+		writeToFile();
+
+	}
+
+	private static void writeToFile() {
+		// Convert the string to a
+		// byte array.
+		String s = "Hello World! ";
+		byte data[] = s.getBytes();
+		Path p = Paths.get("~/Desktop/outFile.txt");
+
+		try (OutputStream out = new BufferedOutputStream(Files.newOutputStream(p, CREATE, APPEND))) {
+			out.write(data, 0, data.length);
+		} catch (IOException x) {
+			System.err.println(x);
+		}
+	}
+
+	private static void readFromFile() {
+		Path file = Paths.get("~/Desktop/inFile.txt");
+		try (InputStream in = Files.newInputStream(file);
+		    BufferedReader reader =
+		      new BufferedReader(new InputStreamReader(in))) {
+		    String line = null;
+		    while ((line = reader.readLine()) != null) {
+		        stringB.append(line);
+		    }
+		} catch (IOException x) {
+		    System.err.println(x);
+		}
+	}
+}

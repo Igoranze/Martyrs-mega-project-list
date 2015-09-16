@@ -1,0 +1,12 @@
+package main.application;
+
+public class Main {
+
+	public static void main(String[] args) {
+		String[] strings = {"This string is not palindrome", //Not palindrome
+							"A Man, A Plan, A Canal-Panama!" //Palindrome
+		}
+
+	}
+
+}

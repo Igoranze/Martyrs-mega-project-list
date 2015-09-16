@@ -1,0 +1,11 @@
+package main.application;
+
+public class VraagNove {
+
+	public static void main(String[] args) {
+		System.out.println(Long.toBinaryString(Double.doubleToRawLongBits(Math.pow(5, 128))));
+		//101001010000010011101110100100011111001001100000001110100110010
+
+	}
+
+}

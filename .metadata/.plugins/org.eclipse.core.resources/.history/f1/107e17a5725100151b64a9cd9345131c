@@ -1,0 +1,40 @@
+import static java.nio.file.StandardOpenOption.*;
+import java.nio.file.*;
+import java.io.*;
+
+
+public class Main {
+
+	public static void main(String[] args) {
+	
+		readFromFile();
+		
+	}
+
+	private static void writeToFile(String line) {
+		// Convert the string to a
+		// byte array.
+		byte data[] = line.getBytes();
+		Path p = Paths.get("/home/selimovic/Desktop/outFile.txt");
+
+		try (OutputStream out = new BufferedOutputStream(Files.newOutputStream(p, CREATE, APPEND))) {
+			out.write(data, 0, data.length);
+		} catch (IOException x) {
+			System.err.println(x);
+		}
+	}
+
+	private static void readFromFile() {
+		Path file = Paths.get("/home/selimovic/Desktop/inFile.txt");
+		try (InputStream in = Files.newInputStream(file);
+		    BufferedReader reader =
+		      new BufferedReader(new InputStreamReader(in))) {
+		    String line = null;
+		    while ((line = reader.readLine()) != null) {
+		    	writeToFile(line +"\n");
+		    }
+		} catch (IOException x) {
+		    System.err.println(x);
+		}
+	}
+}

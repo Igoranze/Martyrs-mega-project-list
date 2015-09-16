@@ -1,0 +1,21 @@
+package main.application;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.NumberFormat;
+import java.util.Locale;
+
+public class Main {
+
+	public static void main(String[] args) {
+		BigDecimal modelVal = new BigDecimal("24.455");
+		BigDecimal displayVal = modelVal.setScale(2, RoundingMode.HALF_EVEN);
+		
+		NumberFormat usdCostFormat = NumberFormat.getCurrencyInstance(Locale.GERMANY);
+		usdCostFormat.setMinimumFractionDigits( 1 );
+		usdCostFormat.setMaximumFractionDigits( 2 );
+		System.out.println( usdCostFormat.format(displayVal.doubleValue()) );
+		
+	}
+
+}

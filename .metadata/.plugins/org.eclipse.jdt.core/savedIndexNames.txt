@@ -1,0 +1,13 @@
+INDEX VERSION 1.127+/home/selimovic/Meuk/Spare/Learning-Java/Martyrs_mega_projects_list/Martyrs-mega-project-list-vol1/.metadata/.plugins/org.eclipse.jdt.core
+190073187.index
+3420686988.index
+2072136731.index
+91060986.index
+2136368660.index
+908068004.index
+1069376060.index
+2478117488.index
+262861138.index
+3936406914.index
+3104846409.index
+1887421165.index

@@ -1,0 +1,16 @@
+package main.application;
+
+public class VraagNove {
+
+	public static void main(String[] args) {
+		int i = 0;
+		for(char c : Long.toBinaryString(Double.doubleToRawLongBits(Math.pow(5, 128))).toCharArray()){
+			if (c == '1' || c == 1){
+				i++;
+			}
+		}
+		System.out.println(i);		
+
+	}
+
+}

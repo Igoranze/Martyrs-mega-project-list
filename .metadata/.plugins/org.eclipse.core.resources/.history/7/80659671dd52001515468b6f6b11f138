@@ -1,0 +1,83 @@
+package main.application;
+
+
+public class VraagDueThread implements Runnable{
+	private String endNumber;
+	private String startNumber;
+	private String threadNumber;
+	
+	public VraagDueThread (String startNumber, String endNumber, String threadNumber){
+		this.endNumber = endNumber;
+		this.startNumber = startNumber;
+		this.threadNumber = threadNumber;
+	}
+	
+	@Override
+	public void run() {
+		//4 threads running on 250000000000000000
+		//double count = 0;						
+		double lastNumber = 0;					 //100000000000000000
+		double answerQ = 0;						 //1000000000000000000
+		for (double i = Double.parseDouble(startNumber); i < Double.parseDouble(endNumber); i++) {
+			double answer = lastNumber + i;
+			double sqrRoot = Math.sqrt(answer);
+			//count++;
+			if(sqrRoot % 1 == 0){
+				answerQ++;
+			}
+			lastNumber = i;
+		}
+		System.out.println(threadNumber + " FinalAnswer" + answerQ);
+		//Antwoord is: 6
+	}
+}
+/*
+public class Vraag2 {
+
+
+
+public static boolean isInteger(Double s) {
+if (s.intValue() - s == 0){
+return true;
+} else {
+return false;
+}
+}
+
+public static boolean kwadraat(BigDecimal getal){
+String[] splitGetal = getal.toString().split("");
+
+Integer sumSplit = 0;
+
+for(String split: splitGetal){
+if (!split.equals("")){
+sumSplit = sumSplit + Integer.parseInt(split);
+}
+}
+if (isInteger(sqrt(sumSplit))){
+System.out.println(getal);
+return true;
+} else {
+return false;
+}
+}
+
+public static void main(String[] args) {
+BigDecimal getal1 = new BigDecimal(0);
+BigDecimal getal2 = new BigDecimal(1);
+
+for (int i=0; i<1000000000; i++){
+BigDecimal sumGetal = getal1.add(getal2);
+getal1 = getal2;
+getal2 = sumGetal;
+
+if (sumGetal.toString().length() > 18){
+break;
+}
+if (kwadraat(sumGetal)){
+
+}
+}
+}
+
+}*/

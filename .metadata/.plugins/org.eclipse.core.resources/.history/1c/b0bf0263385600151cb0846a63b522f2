@@ -1,0 +1,13 @@
+package main.application;
+
+import java.math.BigDecimal;
+
+public class VraagNove {
+
+	public static void main(String[] args) {
+		BigDecimal d = new BigDecimal(Math.pow(5, 128));
+		new BigDecimal("12345678901234567890123456789012345678901234567890").toString(2);
+
+	}
+
+}

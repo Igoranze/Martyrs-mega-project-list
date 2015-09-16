@@ -1,0 +1,30 @@
+package main.application;
+
+public class Calculations {
+
+	public double add(double a, double b){
+		return a+b;
+	}
+	public double substract(double a, double b){
+		return a-b;
+	}
+	public double devide(double a, double b){
+		return a/b;
+	}
+	public double multiply(double a, double b){
+		return a*b;
+	}
+	public double factorial(double a, double b){
+		double temp_a = 0;
+		double temp_b = 0;
+		
+		for (double i = a; i > 0; i--) {
+			
+		}
+		
+		for (double i = b; i > 0; i--) {
+			
+		}
+		return temp_a + temp_b;
+	}
+}

@@ -1,0 +1,63 @@
+package main.application;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.io.*;
+
+
+public class VraagDieci {
+
+	private static int[][] triangle;
+	private static int line;
+	private static int counter;
+
+	
+	
+	public static void main(String[] args) throws FileNotFoundException{
+
+		Scanner fileIn = new Scanner(new File("/home/selimovic/Desktop/inFile.txt"));
+		ArrayList<Integer> numbers = new ArrayList<>();
+		
+		readFile(fileIn);
+	}
+	
+	private static void readFile(Scanner fileIn){
+		while(fileIn.hasNextLine() && fileIn.hasNextInt()){
+			line++;
+			for(int i = 0 ; i < line; ++i){
+					int temp = fileIn.nextInt();
+					numbers.add(temp);
+			}			
+		}		
+		// close the input stream
+		fileIn.close();
+		
+		// Build triangle matrix
+		triangle = new int[line][line];		
+		
+		// Make the triangle in 2D
+		for (int i = 0 ; i < line ; ++i){
+			for (int j = 0 ; j <= i ; ++j){				
+				triangle[i][j] = numbers.get(counter);
+				counter++;
+			}
+		}	
+		
+		/*
+		 * Going from bottom to top
+		 * For each row, make pairs of 2 numbers.
+		 * Then for each pair get the maximum
+		 * Add the maximum to the row above
+		 */
+		for (int i = line-1 ; i > 0; --i){
+			for(int j = 0 ; j < line-1; j++){
+				triangle[i-1][j] += Math.max(triangle[i][j], triangle[i][j+1]);
+			}
+		}
+		
+		// The maximum sum is in the top left corner
+		System.out.println(triangle[0][0]);
+
+	}
+
+}

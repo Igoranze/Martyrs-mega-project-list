@@ -1,0 +1,202 @@
+package main.application;
+/**
+ * Een object zweeft met een vaste snelheid van 20 punten p/s door de ruimte. 
+ * Op het moment van schrijven bevindt het object zich op positie x: 30, y: 50 en z: 90. 
+ * Het object beweegt naar x: 46, y: 48 en z: 9.
+ * Wat zijn de coördinaten van het object na 25 minuten. Afgerond op 2 decimalen
+ * Voorbeeldnotatie antwoord: x:1.200,12 y:24.150,00 z:160,98
+ */
+public class VraagTre {
+
+	public class ObjectSpace {
+		Double x;
+		Double y;
+		Double z;
+		Double speed;
+		ObjectSpace endSpace;
+
+		public Double getX() {
+			return x;
+		}
+
+		public void setX(Double x) {
+			this.x = x;
+		}
+
+		public Double getY() {
+			return y;
+		}
+
+		public void setY(Double y) {
+			this.y = y;
+		}
+
+		public Double getZ() {
+			return z;
+		}
+
+		public void setZ(Double z) {
+			this.z = z;
+		}
+
+		public ObjectSpace(Double x, Double y, Double z){
+			this.x = x;
+			this.y = y;
+			this.z = z;
+		}
+
+		@Override
+		public String toString(){
+			DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols(Locale.GERMAN);
+			otherSymbols.setDecimalSeparator(',');
+			otherSymbols.setGroupingSeparator('.'); 
+
+			DecimalFormat newFormat = new DecimalFormat("##,###.##", otherSymbols);
+
+			return "x:" + newFormat.format(x) + " y:" + newFormat.format(y) + " z:" + newFormat.format(z);
+		}
+
+		public ObjectSpace subtract(Integer sub){
+			this.x = this.x - sub;
+			this.y = this.y - sub;
+			this.z = this.z - sub;
+
+			return this;
+		}
+
+		public ObjectSpace subtract(ObjectSpace sub){
+			this.x = this.x - sub.getX();
+			this.y = this.y - sub.getY();
+			this.z = this.z - sub.getZ();
+
+			return this;
+		}
+
+		public ObjectSpace normalize(){
+			Double length = Math.sqrt((this.x * this.x) + (this.y * this.y) + (this.z * this.z));
+
+			return new ObjectSpace(this.x / length, this.y / length, this.z / length);
+		}
+
+		public ObjectSpace add(Integer sub){
+			this.x = this.x + sub;
+			this.y = this.y + sub;
+			this.z = this.z + sub;
+
+			return this;
+		}
+
+		public ObjectSpace add(ObjectSpace sub){
+			this.x = this.x + sub.getX();
+			this.y = this.y + sub.getY();
+			this.z = this.z + sub.getZ();
+
+			return this;
+		}
+
+		public ObjectSpace multiply(Integer multi){
+			this.x = x * multi;
+			this.y = y * multi;
+			this.z = z * multi;
+
+			return this;
+		}
+	}
+}
+/*
+
+public class ObjectSpace {
+Double x;
+Double y;
+Double z;
+Double speed;
+ObjectSpace endSpace;
+
+public Double getX() {
+return x;
+}
+
+public void setX(Double x) {
+this.x = x;
+}
+
+public Double getY() {
+return y;
+}
+
+public void setY(Double y) {
+this.y = y;
+}
+
+public Double getZ() {
+return z;
+}
+
+public void setZ(Double z) {
+this.z = z;
+}
+
+public ObjectSpace(Double x, Double y, Double z){
+this.x = x;
+this.y = y;
+this.z = z;
+}
+
+@Override
+public String toString(){
+DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols(Locale.GERMAN);
+otherSymbols.setDecimalSeparator(',');
+otherSymbols.setGroupingSeparator('.'); 
+
+DecimalFormat newFormat = new DecimalFormat("##,###.##", otherSymbols);
+
+return "x:" + newFormat.format(x) + " y:" + newFormat.format(y) + " z:" + newFormat.format(z);
+}
+
+public ObjectSpace subtract(Integer sub){
+this.x = this.x - sub;
+this.y = this.y - sub;
+this.z = this.z - sub;
+
+return this;
+}
+
+public ObjectSpace subtract(ObjectSpace sub){
+this.x = this.x - sub.getX();
+this.y = this.y - sub.getY();
+this.z = this.z - sub.getZ();
+
+return this;
+}
+
+public ObjectSpace normalize(){
+Double length = Math.sqrt((this.x * this.x) + (this.y * this.y) + (this.z * this.z));
+
+return new ObjectSpace(this.x / length, this.y / length, this.z / length);
+}
+
+public ObjectSpace add(Integer sub){
+this.x = this.x + sub;
+this.y = this.y + sub;
+this.z = this.z + sub;
+
+return this;
+}
+
+public ObjectSpace add(ObjectSpace sub){
+this.x = this.x + sub.getX();
+this.y = this.y + sub.getY();
+this.z = this.z + sub.getZ();
+
+return this;
+}
+
+public ObjectSpace multiply(Integer multi){
+this.x = x * multi;
+this.y = y * multi;
+this.z = z * multi;
+
+return this;
+}
+}
+ */

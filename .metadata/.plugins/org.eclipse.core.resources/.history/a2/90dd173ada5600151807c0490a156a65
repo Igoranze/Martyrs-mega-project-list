@@ -1,0 +1,68 @@
+package main.application;
+/**
+ * De zombie apocalypse heeft toegeslagen. 
+ * Patient zero is besmet geraakt nadat hij was gebeten door een mier tijdens het nachtelijk wildplassen. Precies om 0:00 zelfs.
+ * De volgende waarden zijn van toepassing
+ * Op het moment van de besmetting van patient zero zijn er 7.000.000.000 mensen niet besmet.
+ * Elke zombie valt 2 mensen aan per uur tussen 8:00 en 22:00. In de nachtelijke uren is dit er 1 per uur.
+ * Elk uur raakt per 5 aanvallen afgerond naar beneden gemiddeld 1 lichaam van een gezond persoon te zwaar beschadigd om 
+ * opnieuw op te staan. Deze persoon kan dus geen anderen infecteren.
+ * Vanaf 8:00 op de eerste dag heeft de mensheid door wat er aan de hand is en weet vanaf dan elk uur per 
+ * drie aanvallen één aanval af te slaan en daarbij aan de zombie te ontsnappen.
+ * Omdat we uitgaan van gemiddelden, beginnen we elk uur opnieuw met het tellen van beschadigde lichamen en afgeweerde zombies.
+ * Na hoeveel uren is het menselijk ras uitgestorven?
+ * 
+ * Antwoord met een positieve integer (bijv. 15000).
+ *
+ */
+public class VraagTredici {
+
+	private static boolean aware = false;
+	private static long humans = 7000000000l;
+
+	private static long zombies = 1;
+
+	private static int days = 0;
+	private static int hours = 0;
+
+	public static void main(String[] args){
+		long zombieAtacks = 0;
+		long atackedPersons = 0;
+		long noobZombies = 0;
+		long disabledZombies = 0;
+
+		while(true){
+			if(hours == 24){
+				days++;
+				hours = 0;
+			}
+
+			if(hours >= 8 && hours <= 22){
+				aware = true;
+				zombieAtacks = 2;
+			} else { 
+				zombieAtacks = 1;
+			}
+
+			atackedPersons = zombies * zombieAtacks;
+			if (aware){
+				noobZombies = atackedPersons / 3;
+			}
+			atackedPersons -= noobZombies;
+			disabledZombies = atackedPersons / 5;
+
+			zombies = zombies - noobZombies + atackedPersons - disabledZombies;
+			humans -= atackedPersons;
+
+			if(humans <= 0){
+				break;
+			}
+
+			hours++;
+
+		}
+		int sum = (24/days);
+		
+		System.out.println(sum);
+	}
+}

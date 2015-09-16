@@ -1,0 +1,23 @@
+package main.application;
+
+public class Main {
+	
+ 
+    public static void main(String[] args) {
+        //Start up the calculator
+    	displayCalc();
+    	
+    }
+
+	private static void displayCalc() {
+		//GUI INIT
+		System.out.println("Insert the first number");
+		double a = Integer.parseInt(System.console().readLine());
+		System.out.println("Insert the second number");
+		double b = Integer.parseInt(System.console().readLine());
+		System.out.println("a:Add, s:Substract, d:Devide, m:Multiply");
+		
+	}
+	
+
+}
