@@ -14,14 +14,14 @@
 	</section>
 	<section name="JavaElementSearchActions">
 	</section>
-	<section name="org.eclipse.ltk.ui.refactoring.settings">
-	</section>
-	<section name="RenameInformationPopup">
+	<section name="quick_assist_proposal_size">
 	</section>
 	<section name="NewClassWizardPage">
 		<item value="false" key="create_constructor"/>
 		<item value="true" key="create_unimplemented"/>
 	</section>
-	<section name="quick_assist_proposal_size">
+	<section name="RenameInformationPopup">
+	</section>
+	<section name="org.eclipse.ltk.ui.refactoring.settings">
 	</section>
 </section>
