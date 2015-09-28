@@ -1,6 +1,7 @@
 package main.application;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 
 public class Main {
 
@@ -9,12 +10,16 @@ public class Main {
 		BigDecimal four =  new BigDecimal(4);
 		BigDecimal three = new BigDecimal(3);
 
-		for (int i = 0 ; i < 17425170; i++){
+		DecimalFormat format = new DecimalFormat("0.###+0");
+		
+		for (int i = 0 ; i < 10000; i++){
 			big = big.multiply(four);
 			big = big.subtract(three);
-			System.out.println(big);
+			
+			System.out.println(format.format(big));
 			
 		}
+		
 	}
 
 }
