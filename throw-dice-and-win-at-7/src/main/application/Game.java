@@ -20,7 +20,7 @@ public class Game {
 		while(true){
 			try{
 				//Play a game every second
-				Thread.sleep(1000);
+				Thread.sleep(800);
 				throwDice(player);
 				
 				//check if player won the game
